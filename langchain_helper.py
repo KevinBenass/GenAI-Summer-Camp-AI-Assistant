@@ -8,13 +8,39 @@ import os
 from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env (especially openai api key)
 
+vectordb_file_path = "faiss_index"
+router_prompt_file_path = "ROUTER_PROMPT.txt"
+application_prompt_file_path = "APPLICATION_PROMPT.txt"
+question_prompt_file_path="QUESTION_PROMPT.txt"
+
 openai.api_key= os.environ['OPENAI_API_KEY']
 
 # Create LLM model
 llm =OpenAI(openai_api_key=os.environ['OPENAI_API_KEY'],temperature=0)
-vectordb_file_path = "faiss_index"
+
+def get_completion(prompt, model="gpt-3.5-turbo", temperature=0):
+    response = openai.chat.completions.create(
+        model=model,
+        messages=[{"role": "system", "content": "You are a helpful assistant"},
+                  {"role": "user", "content": prompt}],
+        temperature=temperature,  # this is the degree of randomness of the model's output
+        max_tokens=1024
+    )
+    return response.choices[0].message.content
+
+def get_intent(query):
+    router_prompt_template = get_text(router_prompt_file_path)
+    prompt = router_prompt_template.format(query=query)
+    response = get_completion(prompt)
+    return response
 
 
+def get_application_details(query, context,model="gpt-3.5-turbo", temperature=0):
+    application_prompt_template = get_text(application_prompt_file_path)
+    prompt = application_prompt_template.format(context_data=context, query=query)
+    response = get_completion(prompt, model=model, temperature=temperature)
+    return response
+     
 def get_retrieval_qa_chain():
      # Initialize instructor embeddings using the Hugging Face model
     instructor_embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-large")
