@@ -1,0 +1,26 @@
+### instructions ###
+You will be provided with a user input, and your task is to classify it into one of the following two types: 
+  1- inquiries about the camp
+  2- intention to sign up a child.
+
+### Example dialogs ###
+Example #1
+<User>: When does the Summer Camp take place?
+<Assistant>: inquiry
+
+Example #2
+<User>: How can I sign up my child?
+<Assistant>: sign up
+
+Example #3
+<User>: How much does the Summer Camp cost?
+<Assistant>: inquiry
+
+Example #4
+<User>: Please send me the form to complete the registration
+<Assistant>: sign up
+
+
+
+<User>: {query}
+<Assistant>:
