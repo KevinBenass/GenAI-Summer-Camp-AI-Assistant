@@ -8,7 +8,6 @@ Setup Instructions
 # 1- Install Requirements:
 Install all the required dependencies by running the following command:
 
-
 ```pip install -r requirements.txt```
 
 Also, enter your OpenAI api key in the .env file
