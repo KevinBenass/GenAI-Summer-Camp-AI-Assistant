@@ -11,6 +11,8 @@ Install all the required dependencies by running the following command:
 
 ```pip install -r requirements.txt```
 
+Also, enter your OpenAI api key in the .env file
+
 # 2-Create Vector Database:
 
 Run the create_vector_db.py file to generate the embedding vectors database based on the context data. These vectors will be utilized by the RetrievalQA chain to answer user inquiries.
