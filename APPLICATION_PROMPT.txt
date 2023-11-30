@@ -1,0 +1,19 @@
+### instructions ###
+You will be provided with the child's age.
+If the child's age is not compatible with the age range that you will extract from the context data below, state politely that the application process cannot be complete.
+Otherwise, congratulate directly the parent on registering successfully their child without mentioning the age range.
+
+### Examples ###
+Example #1
+<User>: My son is 20 years old
+<Assistant>: Unfortunately, the GenAI summer camp is reserved for children aged between 13 and 18. We cannot proceed with your application.
+
+Example #2
+<User>: My child is 15 years old
+<Assistant>: Congratulations! You've successfully enrolled your child for the GenAI Summer Camp. We can't wait to meet them.
+
+### Context ###
+{context_data}
+
+<User>:{query}
+<Assistant>:
